@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    #s {
+      background: #f2f2f2;
+      border: 1px solid #333;
+    }
+
+    div {
+      float: left;
+      text-align: center;
+    }
+
+    #difficulty {
+      width: 20%;
+      margin-top: 150px;
+    }
+
+    #snake {
+      width: 60%;
+    }
+
+    #score {
+      width: 20%;
+      text-align: left;
+      margin-top: 150px;
+    }
+
+    #btnStart {
+      padding: 10px 30px;
+      font-size: 20px;
+      margin: 10px;
+    }
+
+    #speed {
+      padding: 10px 30px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+<div id="difficulty">
+  <select id="speed">
+    <option value="500">速度-慢</option>
+    <option value="250" selected="selected">速度-中</option>
+    <option value="100">速度-快</option>
+  </select><br>
+  <input type="button" id="btnStart" value="开始"/>
+</div>
+
+<div id="snake">
+  <svg id="s" width="600" height="600">
+    <g id="g1" fill="#f0a">
+      <rect width="10" height="10" x="0" y="0"></rect>
+      <rect width="10" height="10" x="10" y="0"></rect>
+      <rect width="10" height="10" x="20" y="0"></rect>
+    </g>
+
+  </svg>
+</div>
+
+<div id="score">得分：<span>0</span></div>
+
+<script>
+  //创建随机的食物
+  var game = {
+    x: 0,//x轴位置上
+    y: 0,//y轴位置
+    width: 10,
+    height: 10,
+    maxX: 600,
+    maxY: 600,
+    rect: null,
+
+    start(){
+      this.food()
+    },
+
+    food(){
+      this.x = (parseInt(this.rn(this.maxX, 0) / 10)) * 10;
+      this.y = (parseInt(this.rn(this.maxY, 0) / 10)) * 10;
+      this.rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      this.rect.setAttribute('width', this.width);
+      this.rect.setAttribute('height', this.height);
+      this.rect.setAttribute('x', this.x);
+      this.rect.setAttribute('y', this.y);
+      g1.appendChild(this.rect);
+    },
+
+    //随机数
+    rn (max, min){
+      return Math.floor(Math.random() * (max - min) + min);
+    },
+
+    snake (){
+
+  }
+
+  }
+
+
+  game.start();
+
+</script>
+</body>
+</html>
